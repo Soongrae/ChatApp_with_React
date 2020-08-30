@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import firebase from '../config/firebase'
+
 const Room = () => {
     const [messages, setMessages] = useState([])
     const [value, setValue] = useState('')
