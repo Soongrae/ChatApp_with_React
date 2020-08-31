@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import firebase from '../config/firebase'
@@ -18,6 +18,8 @@ const SignUp = () => {
                 console.log(error)
             })
     }
+
+    const unSignup = name === "" || email === "" || password === ""
 
     return (
         <>
@@ -49,7 +51,7 @@ const SignUp = () => {
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>
-                <button type='submit'>新規登録</button>
+                <button type='submit' disabled={unSignup}>新規登録</button>
             </form>
             <Link to='/login'>ログイン</Link>
         </>

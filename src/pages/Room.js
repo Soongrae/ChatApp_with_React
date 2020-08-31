@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
-import firebase from '../config/firebase'
+// import firebase from '../config/firebase'
+
+import { AuthContext } from '../AuthService'
 
 const Room = () => {
     const [messages, setMessages] = useState([])
     const [value, setValue] = useState('')
+
+    const user = useContext(AuthContext)
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -21,6 +25,7 @@ const Room = () => {
     return (
         <>
             <h1>Room</h1>
+            <p>Logged in User: {user ? user.email : "...loading"}</p>
             <ul>
                 {
                     messages.map(message => {

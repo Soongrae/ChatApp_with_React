@@ -9,15 +9,19 @@ import {
     Route
 } from 'react-router-dom'
 
+import { AuthProvider } from './AuthService'
+
 const App = () => {
     return (
-        <Router>
-            <Switch>
-                <Route path='/signup' component={SignUp} />
-                <Route path='/login' component={Login} />
-                <Route path='/' component={Room} />
-            </Switch>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <Switch>
+                    <Route path='/signup' component={SignUp} />
+                    <Route path='/login' component={Login} />
+                    <Route path='/' component={Room} />
+                </Switch>
+            </Router>
+        </AuthProvider>
     )
 }
 

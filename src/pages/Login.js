@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 
 import firebase from '../config/firebase'
+import { AuthContext } from '../AuthService'
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    
+    const user = useContext(AuthContext)
+
+    if (user) {
+        return (
+            <Redirect to='/' />
+        )
+    }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -17,6 +26,8 @@ const Login = () => {
                 console.log(error)
             })
     }
+
+    const unLogin = email === "" || password === ""
 
     return (
         <>
@@ -39,7 +50,7 @@ const Login = () => {
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>
-                <button type='submit'>ログイン</button>
+                <button type='submit' disabled={unLogin}>ログイン</button>
             </form>
             <Link to='/signup'>新規登録</Link>
         </>
