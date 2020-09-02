@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import firebase from '../config/firebase'
 import { AuthContext } from '../AuthService'
 
-const Login = () => {
+const Login = ({ history }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     
@@ -21,6 +21,7 @@ const Login = () => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('Login succeed!')
+                history.push('/')
             })
             .catch((error) => {
                 console.log(error)

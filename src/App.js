@@ -2,6 +2,7 @@ import React from 'react'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import Room from './pages/Room'
+import LoggedInRoute from './LoggedInRoute'
 
 import {
     BrowserRouter as Router,
@@ -18,7 +19,8 @@ const App = () => {
                 <Switch>
                     <Route path='/signup' component={SignUp} />
                     <Route path='/login' component={Login} />
-                    <Route path='/' component={Room} />
+                    <LoggedInRoute path='/' component={Room} />
+                    {/* <Route path='/' component={Room} /> */}
                 </Switch>
             </Router>
         </AuthProvider>

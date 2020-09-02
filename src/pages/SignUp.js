@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import firebase from '../config/firebase'
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -13,6 +13,7 @@ const SignUp = () => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('SignUp succeed!')
+                history.push('/')
             })
             .catch((error) => {
                 console.log(error)

@@ -1,12 +1,19 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
-// import firebase from '../config/firebase'
+import firebase from '../config/firebase'
 
 import { AuthContext } from '../AuthService'
 
 const Room = () => {
     const [messages, setMessages] = useState([])
     const [value, setValue] = useState('')
+    
+    useEffect(() => {
+        firebase.firestore().collection('messages')
+            .onSnapshot(() => {
+                
+            })
+    }, [])
 
     const user = useContext(AuthContext)
 
@@ -46,7 +53,9 @@ const Room = () => {
                 />
                 <button type='submit'>send</button>
             </form>
-            <button>ログアウト</button>
+            <button onClick={() => {
+                firebase.auth().signOut()
+            }}>ログアウト</button>
         </>
     )
 }
