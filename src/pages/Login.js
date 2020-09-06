@@ -20,7 +20,7 @@ const Login = ({ history }) => {
         e.preventDefault()
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
-                console.log('Login succeed!')
+                console.log('Login succeed!')  // あっても無くてもどちらでも
                 history.push('/')
             })
             .catch((error) => {

@@ -10,8 +10,12 @@ const Room = () => {
     
     useEffect(() => {
         firebase.firestore().collection('messages')
-            .onSnapshot(() => {
-                
+            .onSnapshot(snapshot => {
+                const messages = snapshot.docs.map(doc => {
+                    return doc.data()
+                })
+
+                setMessages(messages)
             })
     }, [])
 
@@ -19,14 +23,19 @@ const Room = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        setMessages([
-            ...messages,
-            {
-                user: 'John',
-                content: value
-            }
-        ])
-        // setValue('')
+        firebase.firestore().collection('messages').add({
+            content: value,
+            user: user.displayName
+        })
+
+        // setMessages([
+        //     ...messages,
+        //     {
+        //         user: 'John',
+        //         content: value
+        //     }
+        // ])
+        setValue('')
     }
 
     return (
@@ -48,7 +57,7 @@ const Room = () => {
             <form onSubmit={handleSubmit}>
                 <input
                     type='text'
-                    // value={value}
+                    value={value}
                     onChange={e => setValue(e.target.value)}
                 />
                 <button type='submit'>send</button>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import firebase from '../config/firebase'
@@ -11,8 +11,14 @@ const SignUp = ({ history }) => {
     const handleSubmit = e => {
         e.preventDefault()
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => {
-                console.log('SignUp succeed!')
+            // .then(() => {
+            //     console.log('SignUp succeed!')  // あっても無くてもどちらでも
+            //     history.push('/')
+            // })
+            .then(({ user }) => {
+                user.updateProfile({
+                    displayName: name
+                })
                 history.push('/')
             })
             .catch((error) => {
