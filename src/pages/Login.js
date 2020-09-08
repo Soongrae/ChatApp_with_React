@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 
 import firebase from '../config/firebase'
 import { AuthContext } from '../AuthService'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Login = ({ history }) => {
     const [email, setEmail] = useState('')
@@ -31,30 +32,32 @@ const Login = ({ history }) => {
     const unLogin = email === "" || password === ""
 
     return (
-        <>
+        <div className='container text-center'>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-group">
                     <label htmlFor='email'>Email</label>
                     <input
+                        // className="form-control"
                         type='email'
                         id='email'
                         onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 
-                <div>
+                <div className="form-group">
                     <label htmlFor='password'>Password</label>
                     <input
+                        // className="form-control"
                         type='password'
                         id='password'
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>
-                <button type='submit' disabled={unLogin}>ログイン</button>
+                <button type='submit' className='btn btn-primary' disabled={unLogin}>ログイン</button>
             </form>
-            <Link to='/signup'>新規登録</Link>
-        </>
+            <Link to='/signup' className='btn btn-link'>新規登録</Link>
+        </div>
     )
 }
 

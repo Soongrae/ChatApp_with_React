@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import firebase from '../config/firebase'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const SignUp = ({ history }) => {
     const [name, setName] = useState('')
@@ -29,10 +30,10 @@ const SignUp = ({ history }) => {
     const unSignup = name === "" || email === "" || password === ""
 
     return (
-        <>
+        <div className='container text-center'>
             <h1>SignUp</h1>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-group">
                     <label htmlFor='name'>Name</label>
                     <input
                         type='text'
@@ -41,16 +42,17 @@ const SignUp = ({ history }) => {
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label htmlFor='email'>Email</label>
                     <input
                         type='email'
                         id='email'
                         onChange={e => setEmail(e.target.value)}
                     />
+                    <small className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label htmlFor='password'>Password</label>
                     <input
                         type='password'
@@ -58,10 +60,10 @@ const SignUp = ({ history }) => {
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>
-                <button type='submit' disabled={unSignup}>新規登録</button>
+                <button type='submit' className='btn btn-primary' disabled={unSignup}>新規登録</button>
             </form>
-            <Link to='/login'>ログイン</Link>
-        </>
+            <Link to='/login' className='btn btn-link'>ログイン</Link>
+        </div>
     )
 }
 
