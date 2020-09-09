@@ -13,7 +13,7 @@ const SignUp = ({ history }) => {
         e.preventDefault()
         firebase.auth().createUserWithEmailAndPassword(email, password)
             // .then(() => {
-            //     console.log('SignUp succeed!')  // あっても無くてもどちらでも
+            //     console.log('SignUp succeed!')
             //     history.push('/')
             // })
             .then(({ user }) => {
