@@ -12,10 +12,6 @@ const SignUp = ({ history }) => {
     const handleSubmit = e => {
         e.preventDefault()
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            // .then(() => {
-            //     console.log('SignUp succeed!')
-            //     history.push('/')
-            // })
             .then(({ user }) => {
                 user.updateProfile({
                     displayName: name
